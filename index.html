@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>#SUNSURFERS Groups Generator</title>
+        <style>
+.wrap {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 2em;
+}
+.form-group {
+    margin: 1em 0 0 1em;
+}
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <form method=POST>
+                <div class="form-group">
+                    <label for="n_groups">Количество групп:</label>
+                    <select name="n_groups">
+                        {% for i in range(2, 11) %}
+                        <option value={{i}} {% if i == n_groups %}selected{% endif %}>{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea cols=50 rows=50 name="surfers">{{surfers}}</textarea>
+                </div>
+                <div class="form-group"><button type="submit">Распределить</button></div>
+            </form>
+            <div class="form-group">
+            {% if score is defined %}
+            Score: {{score}}
+            {% endif %}
+            </div>
+        </div>
+        {% for trip in result %}
+        <div class="wrap">
+            <h1>Вылазка #{{loop.index}}</h1>
+            {% for group in trip %}
+            <h3>Группа {{loop.index}}</h3>
+            <ul>
+                {% for surfer in group|sort %}
+                <li>{{ surfer }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </body>
+</html>
