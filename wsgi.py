@@ -20,9 +20,9 @@ def get():
 def post():
 
     try:
-        surfers = bottle.request.forms.get("surfers")
+        surfers = bottle.request.forms.surfers
         surfers_list = list(i.strip() for i in surfers.strip().split('\n'))
-        n_groups = int(bottle.request.forms.get("n_groups"))
+        n_groups = int(bottle.request.forms.n_groups)
     except ValueError:
         bottle.abort(400)
 
