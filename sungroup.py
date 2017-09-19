@@ -81,7 +81,7 @@ def main(n_surfers, n_groups, iterations=100):
         if score > best_score:
             best_result, best_score = result, score
     for n, groups in enumerate(best_result, 1):
-        print(f"Выезд #{n}:")
+        print(f"Вылазка #{n}:")
         for n, i in enumerate(groups, 1):
             print(f"Группа {n}: {' '.join(map(lambda x: '%2s' % x, i))}")
         print()
